@@ -10,10 +10,10 @@
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Dashboard-Click_to_Explore-ff2d75?style=for-the-badge)](https://harsh-alt938.github.io/rr-pressure-dashboard/)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Harsh-alt938/rr-pressure-dashboard)
-[![Made with HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)]()
-[![Made with CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)]()
-[![Made with JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)]()
-[![No Dependencies](https://img.shields.io/badge/Dependencies-0-00c853?style=flat-square)]()
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)]()
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)]()
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)]()
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-00c853?style=flat-square)]()
 [![No Build Step](https://img.shields.io/badge/Build_Step-None-7b1fa2?style=flat-square)]()
 [![Responsive](https://img.shields.io/badge/Responsive-Yes-00bcd4?style=flat-square)]()
 
@@ -33,8 +33,8 @@
 8. [Run It Locally](#-run-it-locally)
 9. [Reproduce the Model](#️-reproduce-the-model)
 10. [Design Philosophy](#-design-philosophy)
-11. [Roadmap](#-roadmap)
-12. [Tech Stack](#-tech-stack)
+11. [Roadmap](#️-roadmap)
+12. [Tech Stack](#️-tech-stack)
 13. [Author](#-author)
 14. [Acknowledgements](#-acknowledgements)
 
@@ -50,12 +50,13 @@ This project replaces reputation with evidence. Instead of calling a moment *"pr
 > 🎯 Every ball across **738 men's IPL and T20I matches** — **176,504 deliveries**, 2022 onwards — gets a pressure score.  
 > The top **~21%** become high-pressure balls, and each batter and bowler is judged on the **win probability they added or saved** on exactly those balls.
 
-The result: a ranked top 10 for batters and bowlers, plus a fully interactive dashboard to explore every number behind it.
+The result: a ranked **top 10 for batters and bowlers**, plus a fully interactive dashboard to explore every number behind it.
 
 **Why this matters:**
-- 🏆 Traditional stats (average, strike rate, economy) treat the 1st over the same as the 20th
-- 📉 "Required run rate" is a crude proxy for pressure — it ignores wickets, matchups, and momentum
-- 🧠 This model quantifies pressure **ball-by-ball**, using a win-probability framework borrowed from professional sports analytics
+
+- 🏆 Traditional stats (average, strike rate, economy) treat the 1st over the same as the 20th.
+- 📉 "Required run rate" is a crude proxy for pressure — it ignores wickets, matchups, and momentum.
+- 🧠 This model quantifies pressure **ball-by-ball**, using a win-probability framework borrowed from professional sports analytics.
 
 ---
 
@@ -121,6 +122,7 @@ For every legal ball, the **seven possible outcomes** are simulated, win probabi
 > ⚖️ An average ball equals **1.0**. A ball at **LI 2.0** can swing the result twice as much as an average delivery.
 
 **The seven outcomes simulated per ball:**
+
 1. Dot ball
 2. Single
 3. Two runs
