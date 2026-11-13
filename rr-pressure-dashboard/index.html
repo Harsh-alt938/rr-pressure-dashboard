@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Under Pressure | SupeRR Selector S2 – Round 1</title>
+<meta name="description" content="Who delivers when the game is on the line? Win-probability and leverage model for IPL and T20I batters and bowlers.">
+<link rel="icon" href="assets/rr-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top"><img src="assets/rr-logo.png" alt="Rajasthan Royals"><span>SupeRR Selector S2</span></a>
+  <nav><a href="#rankings">Rankings</a><a href="#pressure">Pressure</a><a href="#method">Method</a><a href="#fit">RR Fit</a><a href="#limits">Reliability</a></nav>
+</header>
+<main id="top">
+<section class="hero">
+  <div>
+    <p class="tag">Round 1 · Pressure Performance Model</p>
+    <h1>Who delivers when the game is on the line?</h1>
+    <p class="lead">A win-probability and leverage model that scores every ball in 738 men's IPL and T20I matches, then ranks the batters and bowlers who add the most when the result can still swing.</p>
+    <div class="stats">
+      <div><b data-count="176504">0</b><span>deliveries modelled</span></div>
+      <div><b data-count="738">0</b><span>matches kept</span></div>
+      <div><b data-count="20.8" data-dec="1">0</b><span>% of balls high-pressure</span></div>
+    </div>
+    <a class="btn" href="#rankings">See the top 10</a>
+  </div>
+  <div class="hero-card">
+    <img src="assets/rr-logo.png" alt="Rajasthan Royals crest">
+    <div class="pick"><small>Top batter</small><strong>Tim David</strong><em>Rating 2.65 · 84% top-10 stable</em></div>
+    <div class="pick"><small>Top bowler</small><strong>Kuldeep Yadav</strong><em>Rating 2.04 · economy 7.2 under pressure</em></div>
+  </div>
+</section>
+
+<section id="rankings" class="sec">
+  <h2>Top 10 under pressure</h2>
+  <p class="sub">Rating = 0.8 × z(Pressure Impact) + 0.2 × z(Consistency). Select a row for the raw numbers.</p>
+  <div class="tools">
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-type="bat" role="tab">Batters</button>
+      <button class="tab" data-type="bowl" role="tab">Bowlers</button>
+    </div>
+    <input id="q" type="search" placeholder="Search player or team" aria-label="Search player or team">
+    <select id="sort" aria-label="Sort by">
+      <option value="rank">Sort: Rank</option><option value="rating">Sort: Rating</option>
+      <option value="stab">Sort: Stability</option><option value="balls">Sort: Pressure balls</option>
+    </select>
+  </div>
+  <div class="table-wrap"><table id="tbl"><thead><tr><th>#</th><th>Player</th><th>IPL 2026 team</th><th>Rating</th><th>P(top-10)</th><th>Pressure balls</th></tr></thead><tbody></tbody></table></div>
+  <div class="chart-grid">
+    <div class="card"><h3 id="c1t">Rating</h3><div id="c1"></div></div>
+    <div class="card"><h3 id="c2t">Normal vs pressure</h3><div id="c2"></div></div>
+  </div>
+</section>
+
+<section id="pressure" class="sec alt">
+  <h2>How we defined pressure</h2>
+  <p class="sub">Pressure is how much one delivery can still change the result, not a single rule of thumb.</p>
+  <div class="cols">
+    <article class="card"><h3>Win-probability model</h3><p>Two gradient-boosted models, one per innings, estimate the batting side's chance from runs, wickets, balls left, run rate and, in chases, runs needed and required rate. Cross-validated by match: log-loss 0.638 and 0.408 against 0.693 for a coin flip.</p></article>
+    <article class="card"><h3>Leverage Index</h3><p>For each legal ball we simulate the seven outcomes, re-score win probability and take the weighted absolute swing. The average ball is 1.0; <b>LI ≥ 1.5</b> is high pressure.</p></article>
+    <article class="card"><h3>Why it works</h3><p>Dot-ball rate climbs from 33.5% to 38.6% as leverage rises, and pressure balls sit in closer games: 0.16 from 50/50 against 0.24 on normal balls.</p></article>
+  </div>
+  <div class="card" style="margin-top:18px"><h3>League dot-ball % by leverage band</h3><div id="bands"></div></div>
+</section>
+
+<section id="method" class="sec">
+  <h2>Method and fair comparison</h2>
+  <div class="cols">
+    <article class="card"><h3>Pressure Impact · 80%</h3><p>Win Probability Added summed over pressure balls, per 100 balls, shrunk toward zero so a hot streak cannot beat a long record.</p></article>
+    <article class="card"><h3>Consistency · 20%</h3><p>Share of pressure innings or spells (4+ balls faced, 6+ delivered) with positive WPA, smoothed toward 50%.</p></article>
+    <article class="card"><h3>Eligibility</h3><p>Batters: 90+ pressure balls and 15 innings (78 qualify). Bowlers: 72+ balls and 15 spells (58 qualify). Associate, A-team, rain-hit and no-result games removed.</p></article>
+    <article class="card"><h3>Guardrail</h3><p>Clutch Lift (pressure minus normal) was noise in split-half tests, so it only removes players more than 1.5 SD below the pool.</p></article>
+  </div>
+</section>
+
+<section id="fit" class="sec alt">
+  <h2>What each player adds to Rajasthan Royals</h2>
+  <p class="sub">Royals already hold Vaibhav Sooryavanshi and Yashasvi Jaiswal. The data points to finishing and middle-over spin as the clearest gaps.</p>
+  <div id="fitGrid" class="cols"></div>
+</section>
+
+<section id="limits" class="sec">
+  <h2>Reliability and limitations</h2>
+  <div class="cols">
+    <article class="card"><h3>Bootstrap stability</h3><p>Across 300 match re-samples, Narine (89%), David (84%) and Kuldeep (80%) are most secure. Membership is robust; exact order is not.</p></article>
+    <article class="card"><h3>Split-half reliability</h3><p>Pressure Impact correlates 0.21 (batters) and 0.29 (bowlers) between halves, about 0.34 and 0.45 after Spearman-Brown.</p></article>
+    <article class="card"><h3>Sensitivity</h3><p>LI 1.2 or 60/40 weights keep 9 of 10 names. LI 2.0 keeps only 5 batters and 3 bowlers, so extreme-leverage ranks are not trusted.</p></article>
+    <article class="card"><h3>Not modelled</h3><p>Ball-level opposition quality, pitch and dew, fielding, batting position and venue. Confirm 2027 auction eligibility.</p></article>
+  </div>
+</section>
+</main>
+<footer><img src="assets/rr-logo.png" alt=""><p>SupeRR Selector Season 2 · Round 1 · Built from the supplied IPL and T20I data</p></footer>
+<dialog id="dlg"><button id="x" aria-label="Close">×</button><div id="dbody"></div></dialog>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
